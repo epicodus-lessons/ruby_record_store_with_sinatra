@@ -70,7 +70,6 @@ describe('delete a song path', {:type => :feature}) do
     album = Album.new({:name => "Yellow Submarine", :id => nil})
     album.save
     visit("/albums/#{album.id}")
-    save_and_open_page
     fill_in('song_name', :with => 'All You Need Is Love')
     click_on('Add song')
     fill_in('song_name', :with => 'All You Need Is Love')
