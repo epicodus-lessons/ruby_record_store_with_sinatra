@@ -1,12 +1,12 @@
 class Album
   attr_reader :id, :name
-  attr_accessor :name
-  @@albums = {}
-  @@total_rows = 0
 
-  def initialize(name, id)
-    @name = name
-    @id = id || @@total_rows += 1
+  @@albums = {}
+  @@total_rows = 0 
+
+  def initialize(attributes) 
+    @name = attributes.fetch(:name)
+    @id = attributes.fetch(:id) || @@total_rows += 1 
   end
 
   def self.all
@@ -14,7 +14,7 @@ class Album
   end
 
   def save
-    @@albums[self.id] = Album.new(self.name, self.id)
+    @@albums[self.id] = Album.new({:name => self.name, :id => self.id})
   end
 
   def ==(album_to_compare)
@@ -31,11 +31,14 @@ class Album
   end
 
   def update(name)
-    self.name = name
-    @@albums[self.id] = Album.new(self.name, self.id)
+    @name = name
   end
 
-  def delete()
+  def delete
     @@albums.delete(self.id)
+  end
+
+  def songs
+    Song.find_by_album(self.id)
   end
 end
