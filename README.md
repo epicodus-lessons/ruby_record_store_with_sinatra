@@ -1,3 +1,3 @@
 # Ruby Record Store
 
-This project introduces the backend logic and tests needed to build routing for the record store project.
+This project contains the completed Record Store app, built with Sinatra and Ruby. There's two classes, `Album` and `Song`, and complete unit and integration tests.
